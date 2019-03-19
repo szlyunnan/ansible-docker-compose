@@ -26,46 +26,22 @@ SYSTEM_SERVICE_WORK: "/usr/lib/systemd/system"
 # ansible hosts childre group
 # 组嵌套CHILDREN下面一层的如下配置必须为固定
 CHILDREN:
-  k8s_node:
-    children: [k8s_master, k8s_work]
-  cluster_node:
-    children: [k8s_master, k8s_work, proxy, etcd]
-
-# 服务器hosts文件生成依赖SIT_INFO配置,但是最终控制hosts需要生成的信息,是如下配置
-# HOSTS_LIST: [k8s_master, k8s_work, proxy, etcd, k8s_work_add]
-HOSTS_LIST: [k8s_master, k8s_work, proxy, etcd]
+  cluster:
+    children: [docker, k8s_work]
 
 # SITE_INFO 下面一层不能改变
 SITE_INFO:
-  k8s_master:
-    master01:
+  docker_node:
+    docker01:
       ip: 192.168.3.24
+    docker02:
+      ip: 192.168.3.25
+    docker03:
+      ip: 192.168.3.26
 
-  etcd:
-    etcd01:
+  harbor_node:
+    harbor01:
       ip: 192.168.3.24
-
-  k8s_work:
-    work01:
-      ip: 192.168.3.27
-    work02:
-      ip: 192.168.3.28
-
-  proxy:
-    proxy01:
-      ip: 192.168.3.27
-    proxy02:
-      ip: 192.168.3.28
-
-  ingress_work:
-    ingress01:
-      ip: 192.168.3.27
-
-  k8s_work_add:
-    work_add01:
-      ip: 192.168.3.22
-    work_add02:
-      ip: 192.168.3.23
 
 ################################ DOCKER ##########################
 # docker  systemd or  cgroupfs
