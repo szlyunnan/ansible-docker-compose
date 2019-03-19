@@ -1,0 +1,5 @@
+---
+- name: remove a list of packages remote for old docker package
+  yum:
+    name: "{{ DOCKER_REMOVE_PACKAGES }}"
+  ignore_errors: True

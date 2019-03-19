@@ -1,0 +1,12 @@
+---
+- name: mkdir docker data directory
+  file:
+    path: "{{ DOCKER_WORK }}"
+    state: absent
+  when: DOCKER_WORK_CLEAN
+
+- name: mkdir docker data directory
+  file:
+    path: "{{ DOCKER_WORK }}"
+    state: directory
+  when: DOCKER_WORK is defined

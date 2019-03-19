@@ -1,0 +1,15 @@
+---
+- name: mkdir /etc/docker
+  file:
+    path: /etc/docker
+    state: directory
+
+- name: rsync daemon.json
+  template:
+    src: "daemon.json.j2"
+    dest: "/etc/docker/daemon.json"
+
+- name: rsync docker services file
+  template:
+    src: "docker.service"
+    dest: "{{ SYSTEM_SERVICE_WORK }}/docker.service"

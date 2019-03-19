@@ -60,6 +60,31 @@ DOCKER_VERSION: "18.03.1.ce-1.el7.centos"
 # 当启用了此项配置，会为docker配置data目录指向
 DOCKER_WORK: "/data/docker"
 
+# 是否删除docker的data目录
+DOCKER_WORK_CLEAN: false
+
+################################ DOCKER HARBOR ##########################
+# harbor work
+DOCKER_HARBOR_WORK: ""
+
+# harbor hostname
+DOCKER_HARBOR_HOSTNAME: ""
+
+# ui_url_protocol http/https
+DOCKER_HARBOR_PROTOCOL: "http"
+
+# harbor job workers defult 10 max_job_workers
+DOCKER_HARBOR_WORKERS: 10
+
+# harbor harbor_admin_password
+DOCKER_HARBOR_PASSWORD: "Harbor12345"
+
+# ssl_cert path
+DOCKER_HARBOR_SSL_CERT: "/data/cert/server.crt"
+
+# ssl_cert_key path
+DOCKER_HARBOR_SSL_CERT_KEY: "/data/cert/server.key"
+
 ################################ TIME INFO ##########################
 # set time tag
 # 默认支持配置系统时间同步

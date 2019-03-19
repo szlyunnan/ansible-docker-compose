@@ -1,0 +1,28 @@
+---
+- name: remove
+  include_tasks: remove.yaml
+
+- name: dirs
+  include_tasks: dirs.yaml
+
+- name: rsync docker binary to node host
+  copy:
+      src: "{{ playbook_dir }}/binary/docker/{{ DOCKER_VERSION }}/{{ item }}"
+      dest: "{{ TOOLS_TMP_DIR }}/"
+  with_items:
+      - "docker-ce-{{ DOCKER_VERSION }}.x86_64.rpm"
+
+- name: install docker
+  yum:
+      name: "{{ TOOLS_TMP_DIR }}/docker-ce-{{ DOCKER_VERSION }}.x86_64.rpm"
+      state: present
+
+- name: files
+  include_tasks: files.yaml
+
+- name: restart docker service
+  systemd:
+      state: restarted
+      daemon_reload: yes
+      name: docker
+      enabled: yes
